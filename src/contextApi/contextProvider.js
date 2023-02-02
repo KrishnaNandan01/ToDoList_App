@@ -7,7 +7,7 @@ const TodoContextProvider = (props)=>{
     const [loginData,setLoginData] = useState({user_name:"",password:""});
     const navigator = useNavigate();
     const SignupPost = ()=>{
-        axios.post("http://localhost:28005/register",registerData).then((res)=>{
+        axios.post("https://todo-app-backend-by-krishna.onrender.com/register",registerData).then((res)=>{
             alert(res.data.status);
             navigator("/")
         }).catch((res)=>{
@@ -17,7 +17,7 @@ const TodoContextProvider = (props)=>{
     }
 
     const LoginPost = ()=>{
-        axios.post("http://localhost:28005/login",loginData).then((res)=>{
+        axios.post("https://todo-app-backend-by-krishna.onrender.com/login",loginData).then((res)=>{
             console.log(res);
             localStorage.setItem("token",res.data.token);
             alert(res.data.message);
@@ -33,7 +33,7 @@ const TodoContextProvider = (props)=>{
         const config = {
             headers:{authorization:token}
         }
-        axios.post("http://localhost:28005/login",config).then((res)=>{
+        axios.post("https://todo-app-backend-by-krishna.onrender.com/activities",config).then((res)=>{
             console.log(res);
         }).catch((res)=>{
             console.log(res);
