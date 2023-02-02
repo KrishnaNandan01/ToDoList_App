@@ -1,0 +1,47 @@
+.header{
+    border: 4px solid yellow;
+   display:  flex;
+   justify-content:flex-end;
+   padding: 20px;
+   font-size: 1.5rem;
+}
+.table-div{
+    display: flex;
+}
+.left-div{
+    height: 83vh;
+    width: 10%;
+    background-color: yellowgreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+.left-div>div>h4{
+    color: green;
+}
+.right-div{
+    width: 90%;
+}
+.add-new{
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+.table-data{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+table{
+    border-collapse: collapse;
+}
+th{
+    border: 1px solid black;
+}
+td{
+    border: 1px solid black;
+}
