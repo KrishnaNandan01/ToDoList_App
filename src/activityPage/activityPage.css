@@ -45,3 +45,7 @@ th{
 td{
     border: 1px solid black;
 }
+.complete{
+    display: flex;
+    justify-content: space-between;
+}

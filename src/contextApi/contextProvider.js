@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 const TodoContextProvider = (props)=>{
     const [registerData,setRegisterData] = useState({user_name:"",password:""});
     const [loginData,setLoginData] = useState({user_name:"",password:""});
+    const [apiData,setApiData] = useState([]);
+    let [addTask,setAddTask] = useState([]);
+    const [useName,setUserName] = useState("User Name");
     const navigator = useNavigate();
+
+
     const SignupPost = ()=>{
         axios.post("https://todo-app-backend-by-krishna.onrender.com/register",registerData).then((res)=>{
             alert(res.data.status);
@@ -18,10 +23,12 @@ const TodoContextProvider = (props)=>{
 
     const LoginPost = ()=>{
         axios.post("https://todo-app-backend-by-krishna.onrender.com/login",loginData).then((res)=>{
+            setUserName(loginData.user_name);
             console.log(res);
             localStorage.setItem("token",res.data.token);
             alert(res.data.message);
-            navigator("/activity")
+            navigator("/activity");
+            FetchActivity();
         }).catch((res)=>{
             console.log(res);
             alert(res.response.data.message)
@@ -29,12 +36,14 @@ const TodoContextProvider = (props)=>{
     }
 
     const FetchActivity = ()=>{
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("token");
+        console.log(token);
         const config = {
             headers:{authorization:token}
         }
-        axios.post("https://todo-app-backend-by-krishna.onrender.com/activities",config).then((res)=>{
-            console.log(res);
+        axios.get("https://todo-app-backend-by-krishna.onrender.com/activities",config).then((res)=>{
+            console.log(res.data);
+            setApiData(res.data.activity);
         }).catch((res)=>{
             console.log(res);
             alert(res.response.data.message)
@@ -51,7 +60,11 @@ const TodoContextProvider = (props)=>{
         LoginPost,
         loginData,
         setLoginData,
-        FetchActivity
+        FetchActivity,
+        apiData,
+        setAddTask,
+        addTask,
+        useName
         
     }}
     >
